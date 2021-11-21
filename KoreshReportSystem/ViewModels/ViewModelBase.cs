@@ -21,7 +21,6 @@ namespace KoreshReportSystem.ViewModels
         ~ViewModelBase()
         {
             this.Dispose(false);
-            //Debug.Fail("Dispose not called on ViewModel class.");
         }
 
         /// <summary>
