@@ -13,7 +13,7 @@ namespace KoreshReportSystem.ViewModels
 
         public MainWindowViewModel()
         {
-            Header = "Ryadovoi Johny Pukalo";
+            Header = "test 2.1";
         }
     }
 }
