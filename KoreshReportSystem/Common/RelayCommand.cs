@@ -12,48 +12,26 @@ namespace KoreshReportSystem.Common
     {
         private readonly Action<object> execute;
         private readonly Predicate<object> canExecute;
-        private readonly Func<string> setToolTip;
-
-        private string _toolTip;
-        public string ToolTip
-        {
-            get => _toolTip;
-            set
-            {
-                if (_toolTip != value)
-                {
-                    _toolTip = value;
-                    OnPropertyChanged(nameof(ToolTip));
-                }
-            }
-        }
 
         #region Constructors
 
-        public RelayCommand(Action<object> execute)
-            : this(execute, null, null)
+        public RelayCommand(Action<object> execute) : this(execute, null)
         {
         }
 
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute, Func<string> setToolTip = null)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
 
             this.execute = execute;
             this.canExecute = canExecute;
-            this.setToolTip = setToolTip;
-            ToolTip = setToolTip?.Invoke();
         }
         #endregion
 
         #region ICommand Members
 
-        public bool CanExecute(object parameter)
-        {
-            ToolTip = setToolTip?.Invoke();
-            return this.canExecute == null ? true : this.canExecute(parameter);
-        }
+        public bool CanExecute(object parameter) => this.canExecute == null ? true : this.canExecute(parameter);
 
         public event EventHandler CanExecuteChanged
         {
@@ -63,7 +41,6 @@ namespace KoreshReportSystem.Common
 
         public void Execute(object parameter)
         {
-            //Helper.Unfocus();
             this.execute(parameter);
         }
 
