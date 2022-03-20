@@ -20,4 +20,8 @@
     <PackageReference Include="EPPlus" Version="5.8.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ks2.Foundation\ks2.Foundation.csproj" />
+  </ItemGroup>
+
 </Project>

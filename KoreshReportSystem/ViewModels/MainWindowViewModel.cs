@@ -14,6 +14,11 @@ namespace KoreshReportSystem.ViewModels
         public MainWindowViewModel()
         {
             Header = "KoreshReportSystem";
+
+            var excelProvider = new ExcelProvider();
+            // Открытие файла, изменение информации и сохранение файла
+            // Assembly/Resources/ExcelTemplates/Test.xlsx
+            excelProvider.TestOpenFile();
         }
     }
 }

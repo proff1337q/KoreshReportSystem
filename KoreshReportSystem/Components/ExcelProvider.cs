@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using KoreshReportSystem.Common;
+using ks2.Foundation;
 using OfficeOpenXml;
 
 namespace KoreshReportSystem.Components
@@ -16,17 +17,16 @@ namespace KoreshReportSystem.Components
         {
             // Используем некоммерческую лицензию
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            //_testOpenFile();
         }
 
-        private void _testOpenFile()
+        public void TestOpenFile()
         {
-            var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var file = new FileInfo(assemblyPath + "/Resources/ExcelTemplates/Test.xlsx");
+            var file = PathUtils.GetFileFromAssembly("/Resources/ExcelTemplates/Test.xlsx");
+
             using (var package = new ExcelPackage(file))
             {
-                var sheet = package.Workbook.Worksheets.Add("My Sheet");
-                sheet.Cells["A1"].Value = "Hello World!";
+                var sheet = package.Workbook.Worksheets.Add(DateTime.Now.Date.ToString());
+                sheet.Cells["A1"].Value = DateTime.Now.ToString();
 
                 // Save to file
                 package.Save();
