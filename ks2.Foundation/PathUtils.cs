@@ -14,9 +14,9 @@ namespace ks2.Foundation
         ///  Путь директории, из которой запустилась программа
         /// </summary>
         public static string AssemblyDirectory => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-       
+
         /// <summary>
-        ///  Путь до файла в директории, из которой запустилась программа
+        ///  Метод получения пути до файла в директории, из которой запустилась программа
         /// </summary>
         /// <param name="path">Дополнительный путь</param>
         public static FileInfo GetFileFromAssembly(string path) => new FileInfo(AssemblyDirectory + path);

@@ -1,9 +1,12 @@
 ﻿using KoreshReportSystem.Components;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
+using KoreshReportSystem.Common;
 
 namespace KoreshReportSystem.ViewModels
 {
@@ -18,7 +21,14 @@ namespace KoreshReportSystem.ViewModels
             var excelProvider = new ExcelProvider();
             // Открытие файла, изменение информации и сохранение файла
             // Assembly/Resources/ExcelTemplates/Test.xlsx
-            excelProvider.TestOpenFile();
+            //excelProvider.TestOpenFile();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var filePath = openFileDialog.FileName;
+                var dataTable = TextFileParser.ParseToDataTable(filePath, HeaderType.DoubleString);
+            }
         }
     }
 }
